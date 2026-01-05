@@ -1,8 +1,68 @@
 <h1>About</h1>
 <p>個人github:<a href="https://github.com/AJhen153/cad2025-41123153" title="https://github.com/AJhen153/cad2025-41123153">https://github.com/AJhen153/cad2025-41123153</a></p>
-<p>個人網頁:</p>
+<p>個人網頁:<a href="https://ajhen153.github.io/cad2025-41123153/content/index.html" title="https://ajhen153.github.io/cad2025-41123153/content/index.html">https://ajhen153.github.io/cad2025-41123153/content/index.html</a></p>
 <p>分組github:<a href="https://github.com/mdecad2025/2a-ag5" title="https://github.com/mdecad2025/2a-ag5">https://github.com/mdecad2025/2a-ag5</a></p>
 <p>分組網頁:<a href="https://mdecad2025.github.io/2a-ag5/content/index.html" title="https://mdecad2025.github.io/2a-ag5/content/index.html">https://mdecad2025.github.io/2a-ag5/content/index.html</a></p>
+<p></p>
+<h1>plotter</h1>
+<p>操作過程影片:<a href="https://youtu.be/Bl7Zf8wyl5M" title="https://youtu.be/Bl7Zf8wyl5M">https://youtu.be/Bl7Zf8wyl5M</a></p>
+<p></p>
+<h1>openduck</h1>
+<p>先將每個會動的地方（類似人類的關節、膝蓋）設置座標系及軸。</p>
+<p><img alt="" height="358" src="/images/1.png" width="262"/></p>
+<p>左鍵工具，下拉找到Tool，再點擊Export as URDF。</p>
+<p><img alt="" height="510" src="/images/2.png" width="272"/></p>
+<p><span>我們以機器人的軀幹為整個機器人的主座標（robot_base），設定完主座標及組成軀幹的零件後，增加三個分支，分別為機器人的Neck、L_Hip、R_Hip。</span></p>
+<p><span><img alt="" height="235" src="/images/3.png" width="414"/><img alt="" height="119" src="/images/4.png" width="136"/></span></p>
+<p><span>點選分支進行座標、軸的命名、選取旋轉方式及設定並選取其組成的零件。</span></p>
+<p><span><img alt="" height="255" src="/images/5.png" width="360"/><img alt="" height="133" src="/images/6.png" width="203"/></span></p>
+<p><span>這是我們設定完的樹狀圖，完成設定後點選Preview and Export。</span></p>
+<p><span><img alt="" height="223" src="/images/7.png" width="189"/><img alt="" height="238" src="/images/8.png" width="228"/></span></p>
+<p><span>確認輸出的資料是否與座標、軸的設置相同，若無誤就點選Next進行下一步。</span></p>
+<p><span><img alt="" height="320" src="/images/9.png" width="553"/></span></p>
+<p><span>再次確認輸出資訊，無誤點選Export URDF and Meshes，建議新增資料夾儲存。</span></p>
+<p><span><img alt="" height="307" src="/images/10.png" width="554"/></span></p>
+<p><span>搜尋cmd打開命令提示字元，打上指令python -m pip install urdf2webots讓電腦安裝轉檔資源。</span></p>
+<p><span><img alt="" height="281" src="/images/11.png" width="573"/></span></p>
+<p><span>再打以下指令讓URDF檔轉成proto檔，路徑的部分需要自行更改。指令：python C:\Users\ASUS\AppData\Local\Programs\Python\Python314\Lib\site-packages\urdf2webots\importer.py --input D:\DUCK-1126\Duck\Duck\urdf\Duck.urdf --output D:\DUCK-1126\Duck\Duck\urdf\Duck.proto</span></p>
+<p><span><img alt="" height="62" src="/images/12.png" width="800"/></span></p>
+<p><span>成功的話就會在目的地資料夾看到生成一個proto檔。</span></p>
+<p><span><img alt="" height="156" src="/images/13.png" width="169"/></span></p>
+<p><span>打開webots並新開一個專案。</span></p>
+<p><span><img alt="" height="429" src="/images/14.png" width="364"/></span></p>
+<p><span>把剛剛生成的proto檔丟到新建的專案資料夾裡的protos資料夾裡並Reload World。</span></p>
+<p><span><img alt="" height="187" src="/images/15.png" width="318"/></span></p>
+<p><span>Add New新增一個Robot。</span></p>
+<p><span><img alt="" height="358" src="/images/16.png" width="526"/></span></p>
+<p><span>在Robots下找到children並點擊Add New。</span></p>
+<p><span><img alt="" height="296" src="/images/17.png" width="447"/></span></p>
+<p><span>在RPOTO nodes(Current Project)下可以看到我們的機器人，點選並點擊Add。</span></p>
+<p><span><img alt="" height="366" src="/images/18.png" width="532"/></span></p>
+<p><span>我們的機器人成功匯入，但有錯誤警告，目前正在排除中。</span></p>
+<p><span><img alt="" height="322" src="/images/19.png" width="573"/></span></p>
+<p><span>我們在專案資寮夾裡面的controllers資料夾裡新增名為duck_control的資料夾，並在裡面新增名為duck_control的py檔，用於寫入控制機器人的程式做使用。</span></p>
+<p><span><img alt="" height="297" src="/images/20.png" width="550"/></span></p>
+<p><span>Reload World後，我們在新增的機器人分支下找到controller"generic"點擊Select，可以找到剛剛新增的duck_control，點選並點擊OK後，右邊就能進行程式編輯。</span></p>
+<p><span><img alt="" height="207" src="/images/31.png" width="604"/></span></p>
+<p><span>根據AI的回答，Webots跳出的紅字警告與三角網格和節點過多有關，解決辦法有兩個，第一個是減少匯入的模型，第二個是將所有模型的三角網格都減少，為保萬全，我們兩個兩個都有做。</span></p>
+<p><span><img alt="" height="312" src="/images/22.png" width="562"/></span></p>
+<p>首先打開Blender將要減少網格數的模型STL匯入。</p>
+<p><img alt="" height="457" src="/images/23.png" width="377"/></p>
+<p>匯入後可以在右下角看到目前這個模型的網格總數以及網格類型。</p>
+<p><img alt="" height="291" src="/images/24.png" width="582"/></p>
+<p>點擊右邊藍色板手的符號，再點擊新增修改器。</p>
+<p><img alt="" height="312" src="/images/25.png" width="335"/></p>
+<p>游標移動到生成，再點擊大量毀滅。</p>
+<p><img alt="" height="636" src="/images/26.png" width="539"/></p>
+<p>在比率那一欄做更動，讓下方的網格數減少到一定程度。</p>
+<p><img alt="" height="592" src="/images/27.png" width="551"/></p>
+<p>完成後匯出STL。</p>
+<p><img alt="" height="638" src="/images/28.png" width="525"/></p>
+<p>其他的模型依照上述步驟減少三角網格，完成後到存放STL的資料夾將修改過的檔案取代原本的檔案。</p>
+<p><img alt="" height="336" src="/images/29.png" width="715"/></p>
+<p>打開Webots並Reload World後可以看到和網格、節點相關的警告消失了，其他的紅字警告正在排除中。</p>
+<p><img alt="" height="342" src="/images/30.png" width="652"/></p>
+<p><span></span></p>
 <h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
@@ -291,3 +351,4 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <p>
 <script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
 </p>
+<p></p>
